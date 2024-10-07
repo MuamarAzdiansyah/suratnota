@@ -1,0 +1,33 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile # Hanya jika Anda menggunakan Dockerfile
+#    image: php:7.4-apache
+    container_name: surat_app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - surat_network
+
+  db:
+    image: mariadb:latest
+    container_name: surat_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: suratdb
+      MYSQL_USER: amar
+      MYSQL_PASSWORD: amar1403
+    volumes:
+      - ./database:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - surat_network
+
+networks:
+  surat_network:
+    driver: bridge
