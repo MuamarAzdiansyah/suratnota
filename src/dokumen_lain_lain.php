@@ -183,7 +183,7 @@ if (!isset($_SESSION['loggedin'])) {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <a href="dokumen_surat_keterangan.php" class="btn btn-primary">Buat Surat</a>
+                <a href="surat_keterangan.php" class="btn btn-primary">Buat Surat</a>
             </div>
         </div>
     </div>
