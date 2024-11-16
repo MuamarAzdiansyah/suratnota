@@ -73,11 +73,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Surat Keterangan</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('ocean-blue-copy-space-abstract-paper-waves_23-2148319152.avif'); /* Ganti dengan path gambar Anda */
+            background-size: cover; /* Mengatur gambar agar menutupi seluruh halaman */
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 700px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+    </style>
 </head>
 <body>
+
 <div class="container mt-5">
-    <h2>Edit Surat Keterangan</h2>
+    <h2 class="text-center">Edit Surat Keterangan</h2>
 
     <?php if (isset($success_message)) : ?>
         <div class="alert alert-success" role="alert">
@@ -105,15 +134,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-group">
             <label for="dokumen">Upload Dokumen (PDF/DOC/DOCX - Maksimal 5MB)</label>
             <input type="file" class="form-control-file" id="dokumen" name="dokumen">
-            <p class="text-muted">Current file: <a href="<?php echo htmlspecialchars($surat['dokumen']); ?>" target="_blank">Lihat Dokumen</a></p>
+            <p class="text-muted">File saat ini: <a href="<?php echo htmlspecialchars($surat['dokumen']); ?>" target="_blank">Lihat Dokumen</a></p>
         </div>
-        <button type="submit" class="btn btn-primary">Perbarui</button>
-        <a href="surat_keterangan.php" class="btn btn-secondary">Kembali</a>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Perbarui</button>
+            <a href="surat_keterangan.php" class="btn btn-secondary">Kembali</a>
+        </div>
     </form>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

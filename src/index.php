@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     
-    if ($username == 'amar' && $password == 'amar1403') {
+    if ($username == 'TUinti' && $password == 'inti123') {
         $_SESSION['loggedin'] = true;
         header("Location: dashboard.php");
         exit;

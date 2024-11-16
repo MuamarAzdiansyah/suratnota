@@ -71,6 +71,12 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
         body {
+            background-image: url('ocean-blue-copy-space-abstract-paper-waves_23-2148319152.avif'); /* Ganti dengan path gambar Anda */
+            background-size: cover; /* Mengatur gambar agar menutupi seluruh halaman */
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        body {
             background-color: #f8f9fa;
         }
         .content {

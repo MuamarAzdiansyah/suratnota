@@ -103,10 +103,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <style>
         body {
+            background-image: url('ocean-blue-copy-space-abstract-paper-waves_23-2148319152.avif'); /* Ganti dengan path gambar Anda */
+            background-size: cover; /* Mengatur gambar agar menutupi seluruh halaman */
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        body {
             background-color: #f8f9fa;
         }
         .card {
             margin-bottom: 20px;
+        }
+        #klasifikasi {
+            max-width: 250px; /* Sesuaikan dengan kebutuhan Anda */
+            width: 100%; /* Pastikan lebar dropdown responsif */
         }
     </style>
 </head>
@@ -133,13 +143,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label>Nomor Memo</label>
                     <div class="input-group">
                         <input type="number" name="nomor" class="form-control" placeholder="Nomor" value="<?= htmlspecialchars($data['nomor_memo']) ?>" required>
-                        <select name="klasifikasi" class="form-control" required>
-                            <option value="<?= htmlspecialchars($data['klasifikasi']) ?>"><?= htmlspecialchars($data['klasifikasi']) ?></option>
-                            <option value="AI.01">AI.01 AUDIT</option>
-                            <option value="AI.02">AI.02 REVIU</option>
-                            <option value="AK">AK PENGAWASAN</option>
-                            <option value="KP.09.02">KP.09.02 PROGRAM SARJANA ATAU DIPLOMA IV</option>
-                        </select>
+                        <select class="select2" id="klasifikasi" name="klasifikasi" required>
+        <option value="<?= htmlspecialchars($undangan_internal['klasifikasi']) ?>"><?= htmlspecialchars($undangan_internal['klasifikasi']) ?></option>
+        <option value="AI.01">AI.01 AUDIT</option>
+        <option value="AI.02">AI.02 REVIU</option>
+        <option value="AI.03">AI.03 EVALUASI</option>
+        <option value="AI.04">AI.04 PENGADUAN MASYARAKAT</option>
+        <option value="AI.05">AI.05 PENGAWASAN UNTUK TUJUAN TERTENTU</option>
+        <option value="AI.06">AI.06 LAPORAN HASIL PENGAWASAN/PEMERIKSAAN</option>
+        <option value="AI.07">AI.07 PEMANTAUAN</option>
+    </select>
                         <select name="kategori" class="form-control" required>
                             <option value="<?= htmlspecialchars($data['kategori']) ?>"><?= htmlspecialchars($data['kategori']) ?></option>
                             <option value="ND">Nota Dinas (ND)</option>

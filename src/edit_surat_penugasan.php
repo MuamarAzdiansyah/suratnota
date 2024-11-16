@@ -74,6 +74,12 @@ $row = $result->fetch_assoc();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <style>
         body {
+            background-image: url('ocean-blue-copy-space-abstract-paper-waves_23-2148319152.avif'); /* Ganti dengan path gambar Anda */
+            background-size: cover; /* Mengatur gambar agar menutupi seluruh halaman */
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        body {
             background-color: #f8f9fa;
         }
         h2 {
@@ -85,6 +91,10 @@ $row = $result->fetch_assoc();
             background-color: #ffffff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #klasifikasi {
+            max-width: 250px; /* Sesuaikan dengan kebutuhan Anda */
+            width: 100%; /* Pastikan lebar dropdown responsif */
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -112,12 +122,15 @@ $row = $result->fetch_assoc();
             <label>Nomor Memo</label>
             <div class="input-group mb-3">
                 <input type="number" name="nomor" class="form-control" value="<?php echo htmlspecialchars($row['nomor_memo']); ?>" required>
-                <select name="klasifikasi" class="form-control" required>
-                    <option value="">Klasifikasi</option>
-                    <option value="AI.01" <?= ($row['klasifikasi'] == 'AI.01') ? 'selected' : ''; ?>>AI.01 AUDIT</option>
-                    <option value="AI.02" <?= ($row['klasifikasi'] == 'AI.02') ? 'selected' : ''; ?>>AI.02 REVIU</option>
-                    <option value="AK" <?= ($row['klasifikasi'] == 'AK') ? 'selected' : ''; ?>>AK PENGAWASAN</option>
-                    <option value="KP.09.02" <?= ($row['klasifikasi'] == 'KP.09.02') ? 'selected' : ''; ?>>KP.09.02 PROGRAM SARJANA ATAU DIPLOMA IV</option>
+                <select class="select2" id="klasifikasi" name="klasifikasi" required>
+        <option value="<?= htmlspecialchars($surat_penugasan['klasifikasi']) ?>"><?= htmlspecialchars($surat_penugasan['klasifikasi']) ?></option>
+        <option value="AI.01">AI.01 AUDIT</option>
+        <option value="AI.02">AI.02 REVIU</option>
+        <option value="AI.03">AI.03 EVALUASI</option>
+        <option value="AI.04">AI.04 PENGADUAN MASYARAKAT</option>
+        <option value="AI.05">AI.05 PENGAWASAN UNTUK TUJUAN TERTENTU</option>
+        <option value="AI.06">AI.06 LAPORAN HASIL PENGAWASAN/PEMERIKSAAN</option>
+        <option value="AI.07">AI.07 PEMANTAUAN</option>
                 </select>
                 <select name="kategori" class="form-control" required>
                     <option value="">Kategori</option>
@@ -174,7 +187,7 @@ $row = $result->fetch_assoc();
 
             </select>
         </div>
-        <div class="form-group">
+         <div class="form-group">
             <label>Tanggal</label>
             <input type="date" name="tanggal" class="form-control" value="<?php echo htmlspecialchars($row['tanggal']); ?>" required>
         </div>
@@ -183,11 +196,10 @@ $row = $result->fetch_assoc();
             <textarea name="perihal" class="form-control" required><?php echo htmlspecialchars($row['perihal']); ?></textarea>
         </div>
         <div class="form-group">
-            <label>Dokumen (opsional, maksimal 5MB)</label>
-            <input type="file" name="dokumen" class="form-control">
+            <label>Unggah Dokumen</label>
+            <input type="file" name="dokumen" class="form-control-file">
         </div>
-        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-        <a href="surat_penugasan.php" class="btn btn-secondary">Kembali</a>
+        <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
 

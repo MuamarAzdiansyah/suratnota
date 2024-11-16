@@ -86,10 +86,20 @@ ob_end_flush(); // Mengakhiri output buffering
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <style>
         body {
+            background-image: url('ocean-blue-copy-space-abstract-paper-waves_23-2148319152.avif'); /* Ganti dengan path gambar Anda */
+            background-size: cover; /* Mengatur gambar agar menutupi seluruh halaman */
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        body {
             background-color: #f8f9fa;
         }
         .card {
             margin-bottom: 20px;
+        }
+        #klasifikasi {
+            max-width: 250px; /* Sesuaikan dengan kebutuhan Anda */
+            width: 100%; /* Pastikan lebar dropdown responsif */
         }
     </style>
 </head>
@@ -116,13 +126,17 @@ ob_end_flush(); // Mengakhiri output buffering
                     <label>Nomor Memo</label>
                     <div class="input-group">
                         <input type="number" name="nomor" class="form-control" placeholder="Nomor" value="<?= htmlspecialchars($nota_dinas['nomor']) ?>" required>
-                        <select name="klasifikasi" class="form-control" required>
-                            <option value="<?= htmlspecialchars($nota_dinas['klasifikasi']) ?>"><?= htmlspecialchars($nota_dinas['klasifikasi']) ?></option>
-                            <option value="AI.01">AI.01 AUDIT</option>
-                            <option value="AI.02">AI.02 REVIU</option>
-                            <option value="AK">AK PENGAWASAN</option>
-                            <option value="KP.09.02">KP.09.02 PROGRAM SARJANA ATAU DIPLOMA IV</option>
-                        </select>
+                        <select class="select2" id="klasifikasi" name="klasifikasi" required>
+        <option value="<?= htmlspecialchars($nota_dinas['klasifikasi']) ?>"><?= htmlspecialchars($nota_dinas['klasifikasi']) ?></option>
+        <option value="AI.01">AI.01 AUDIT</option>
+        <option value="AI.02">AI.02 REVIU</option>
+        <option value="AI.03">AI.03 EVALUASI</option>
+        <option value="AI.04">AI.04 PENGADUAN MASYARAKAT</option>
+        <option value="AI.05">AI.05 PENGAWASAN UNTUK TUJUAN TERTENTU</option>
+        <option value="AI.06">AI.06 LAPORAN HASIL PENGAWASAN/PEMERIKSAAN</option>
+        <option value="AI.07">AI.07 PEMANTAUAN</option>
+    </select>
+
                         <select name="kategori" class="form-control" required>
                             <option value="<?= htmlspecialchars($nota_dinas['kategori']) ?>"><?= htmlspecialchars($nota_dinas['kategori']) ?></option>
                             <option value="ND">Nota Dinas (ND)</option>
@@ -153,37 +167,57 @@ ob_end_flush(); // Mengakhiri output buffering
                 <div class="form-group">
     <label>Tujuan</label>
     <select name="tujuan_select[]" class="form-control select2" multiple required>
-        <option value="KEPALA" <?= (strpos($nota_dinas['tujuan'], 'KEPALA') !== false) ? 'selected' : '' ?>>KEPALA</option>
-        <option value="WAKIL KEPALA" <?= (strpos($nota_dinas['tujuan'], 'WAKIL KEPALA') !== false) ? 'selected' : '' ?>>WAKIL KEPALA</option>
-        <option value="SEKRETARIAT UTAMA" <?= (strpos($nota_dinas['tujuan'], 'SEKRETARIAT UTAMA') !== false) ? 'selected' : '' ?>>SEKRETARIAT UTAMA</option>
-        <option value="DEPUTI BIDANG PEMBINAAN MANAJEMEN KEPEGAWAIAN" <?= (strpos($nota_dinas['tujuan'], 'DEPUTI BIDANG PEMBINAAN MANAJEMEN KEPEGAWAIAN') !== false) ? 'selected' : '' ?>>DEPUTI BIDANG PEMBINAAN MANAJEMEN KEPEGAWAIAN</option>
-        <option value="DEPUTI BIDANG MUTASI KEPEGAWAIAN" <?= (strpos($nota_dinas['tujuan'], 'DEPUTI BIDANG MUTASI KEPEGAWAIAN') !== false) ? 'selected' : '' ?>>DEPUTI BIDANG MUTASI KEPEGAWAIAN</option>
-        <option value="DEPUTI BIDANG SISTEM INFORMASI KEPEGAWAIAN" <?= (strpos($nota_dinas['tujuan'], 'DEPUTI BIDANG SISTEM INFORMASI KEPEGAWAIAN') !== false) ? 'selected' : '' ?>>DEPUTI BIDANG SISTEM INFORMASI KEPEGAWAIAN</option>
-        <option value="DEPUTI BIDANG PENGAWASAN DAN PENGENDALIAN" <?= (strpos($nota_dinas['tujuan'], 'DEPUTI BIDANG PENGAWASAN DAN PENGENDALIAN') !== false) ? 'selected' : '' ?>>DEPUTI BIDANG PENGAWASAN DAN PENGENDALIAN</option>
-        <option value="BIRO UMUM" <?= (strpos($nota_dinas['tujuan'], 'BIRO UMUM') !== false) ? 'selected' : '' ?>>BIRO UMUM</option>
-        <option value="BIRO SDM" <?= (strpos($nota_dinas['tujuan'], 'BIRO SDM') !== false) ? 'selected' : '' ?>>BIRO SDM</option>
-        <option value="BIRO KEUANGAN" <?= (strpos($nota_dinas['tujuan'], 'BIRO KEUANGAN') !== false) ? 'selected' : '' ?>>BIRO KEUANGAN</option>
-        <option value="BIRO PERENCANAAN DAN ORGANISASI" <?= (strpos($nota_dinas['tujuan'], 'BIRO PERENCANAAN DAN ORGANISASI') !== false) ? 'selected' : '' ?>>BIRO PERENCANAAN DAN ORGANISASI</option>
-        <option value="BIRO HUMAS, HUKUM, DAN KERJA SAMA" <?= (strpos($nota_dinas['tujuan'], 'BIRO HUMAS, HUKUM, DAN KERJA SAMA') !== false) ? 'selected' : '' ?>>BIRO HUMAS, HUKUM, DAN KERJA SAMA</option>
-        <option value="DIREKTORAT PERATURAN DAN PERUNDANG-UNDANGAN" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT PERATURAN DAN PERUNDANG-UNDANGAN') !== false) ? 'selected' : '' ?>>DIREKTORAT PERATURAN DAN PERUNDANG-UNDANGAN</option>
-        <option value="DIREKTORAT JABATAN ASN" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT JABATAN ASN') !== false) ? 'selected' : '' ?>>DIREKTORAT JABATAN ASN</option>
-        <option value="DIREKTORAT KINERJA ASN" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT KINERJA ASN') !== false) ? 'selected' : '' ?>>DIREKTORAT KINERJA ASN</option>
-        <option value="DIREKTORAT KOMPENSASI ASN" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT KOMPENSASI ASN') !== false) ? 'selected' : '' ?>>DIREKTORAT KOMPENSASI ASN</option>
-        <option value="DIREKTORAT PENGADAAN DAN KEPANGKATAN" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT PENGADAAN DAN KEPANGKATAN') !== false) ? 'selected' : '' ?>>DIREKTORAT PENGADAAN DAN KEPANGKATAN</option>
-        <option value="DIREKTORAT PENSIUN PNS DAN PEJABAT NEGARA" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT PENSIUN PNS DAN PEJABAT NEGARA') !== false) ? 'selected' : '' ?>>DIREKTORAT PENSIUN PNS DAN PEJABAT NEGARA</option>
-        <option value="DIREKTORAT STATUS DAN KEDUDUKAN KEPEGAWAIAN" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT STATUS DAN KEDUDUKAN KEPEGAWAIAN') !== false) ? 'selected' : '' ?>>DIREKTORAT STATUS DAN KEDUDUKAN KEPEGAWAIAN</option>
-        <option value="DIREKTORAT ARSIP KEPEGAWAIAN" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT ARSIP KEPEGAWAIAN') !== false) ? 'selected' : '' ?>>DIREKTORAT ARSIP KEPEGAWAIAN</option>
-        <option value="DIREKTORAT PPSI ASN" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT PPSI ASN') !== false) ? 'selected' : '' ?>>DIREKTORAT PPSI ASN</option>
-        <option value="DIREKTORAT PDPIK" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT PDPIK') !== false) ? 'selected' : '' ?>>DIREKTORAT PDPIK</option>
-        <option value="DIREKTORAT INTI" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT INTI') !== false) ? 'selected' : '' ?>>DIREKTORAT INTI</option>
-        <option value="DIREKTORAT PENGAWASAN DAN PENGENDALIAN I" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT PENGAWASAN DAN PENGENDALIAN I') !== false) ? 'selected' : '' ?>>DIREKTORAT PENGAWASAN DAN PENGENDALIAN I</option>
-        <option value="DIREKTORAT PENGAWASAN DAN PENGENDALIAN II" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT PENGAWASAN DAN PENGENDALIAN II') !== false) ? 'selected' : '' ?>>DIREKTORAT PENGAWASAN DAN PENGENDALIAN II</option>
-        <option value="DIREKTORAT PENGAWASAN DAN PENGENDALIAN III" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT PENGAWASAN DAN PENGENDALIAN III') !== false) ? 'selected' : '' ?>>DIREKTORAT PENGAWASAN DAN PENGENDALIAN III</option>
-        <option value="DIREKTORAT PENGAWASAN DAN PENGENDALIAN IV" <?= (strpos($nota_dinas['tujuan'], 'DIREKTORAT PENGAWASAN DAN PENGENDALIAN IV') !== false) ? 'selected' : '' ?>>DIREKTORAT PENGAWASAN DAN PENGENDALIAN IV</option>
-        <option value="PUSAT PERENCANAAN KEBUTUHAN ASN" <?= (strpos($nota_dinas['tujuan'], 'PUSAT PERENCANAAN KEBUTUHAN ASN') !== false) ? 'selected' : '' ?>>PUSAT PERENCANAAN KEBUTUHAN ASN</option>
-        <option value="PUSAT PENGEMBANGAN KEPEGAWAIAN ASN" <?= (strpos($nota_dinas['tujuan'], 'PUSAT PENGEMBANGAN KEPEGAWAIAN ASN') !== false) ? 'selected' : '' ?>>PUSAT PENGEMBANGAN KEPEGAWAIAN ASN</option>
-        <option value="PUSAT PENGEMBANGAN SDM" <?= (strpos($nota_dinas['tujuan'], 'PUSAT PENGEMBANGAN SDM') !== false) ? 'selected' : '' ?>>PUSAT PENGEMBANGAN SDM</option>
-        <option value="SELURUH PEGAWAI"<?= (strpos($nota_dinas['tujuan'], 'SELURUH PEGAWAI') !== false) ? 'selected' : '' ?>>SELURUH PEGAWAI</option>
+    <option value="KEPALA">KEPALA</option>
+<option value="WAKIL KEPALA">WAKIL KEPALA</option>
+<option value="SEKRETARIAT UTAMA">SEKRETARIAT UTAMA</option>
+<option value="DEPUTI BIDANG PEMBINAAN MANAJEMEN KEPEGAWAIAN">DEPUTI BIDANG PEMBINAAN MANAJEMEN KEPEGAWAIAN</option>
+<option value="DEPUTI BIDANG MUTASI KEPEGAWAIAN">DEPUTI BIDANG MUTASI KEPEGAWAIAN</option>
+<option value="DEPUTI BIDANG SISTEM INFORMASI KEPEGAWAIAN">DEPUTI BIDANG SISTEM INFORMASI KEPEGAWAIAN</option>
+<option value="DEPUTI BIDANG PENGAWASAN DAN PENGENDALIAN">DEPUTI BIDANG PENGAWASAN DAN PENGENDALIAN</option>
+<option value="BIRO UMUM">BIRO UMUM</option>
+<option value="BIRO SDM">BIRO SDM</option>
+<option value="BIRO KEUANGAN">BIRO KEUANGAN</option>
+<option value="BIRO PERENCANAAN DAN ORGANISASI">BIRO PERENCANAAN DAN ORGANISASI</option>
+<option value="BIRO HUMAS, HUKUM, DAN KERJA SAMA">BIRO HUMAS, HUKUM, DAN KERJA SAMA</option>
+<option value="DIREKTORAT PERATURAN DAN PERUNDANG-UNDANGAN">DIREKTORAT PERATURAN DAN PERUNDANG-UNDANGAN</option>
+<option value="DIREKTORAT JABATAN ASN">DIREKTORAT JABATAN ASN</option>
+<option value="DIREKTORAT KINERJA ASN">DIREKTORAT KINERJA ASN</option>
+<option value="DIREKTORAT KOMPENSASI ASN">DIREKTORAT KOMPENSASI ASN</option>
+<option value="DIREKTORAT PENGADAAN DAN KEPANGKATAN">DIREKTORAT PENGADAAN DAN KEPANGKATAN</option>
+<option value="DIREKTORAT PENSIUN PNS DAN PEJABAT NEGARA">DIREKTORAT PENSIUN PNS DAN PEJABAT NEGARA</option>
+<option value="DIREKTORAT STATUS DAN KEDUDUKAN KEPEGAWAIAN">DIREKTORAT STATUS DAN KEDUDUKAN KEPEGAWAIAN</option>
+<option value="DIREKTORAT ARSIP KEPEGAWAIAN">DIREKTORAT ARSIP KEPEGAWAIAN</option>
+<option value="DIREKTORAT PPSI ASN">DIREKTORAT PPSI ASN</option>
+<option value="DIREKTORAT PDPIK">DIREKTORAT PDPIK</option>
+<option value="DIREKTORAT INTI">DIREKTORAT INTI</option>
+<option value="DIREKTORAT PENGAWASAN DAN PENGENDALIAN I">DIREKTORAT PENGAWASAN DAN PENGENDALIAN I</option>
+<option value="DIREKTORAT PENGAWASAN DAN PENGENDALIAN II">DIREKTORAT PENGAWASAN DAN PENGENDALIAN II</option>
+<option value="DIREKTORAT PENGAWASAN DAN PENGENDALIAN III">DIREKTORAT PENGAWASAN DAN PENGENDALIAN III</option>
+<option value="DIREKTORAT PENGAWASAN DAN PENGENDALIAN IV">DIREKTORAT PENGAWASAN DAN PENGENDALIAN IV</option>
+<option value="PUSAT PERENCANAAN KEBUTUHAN ASN">PUSAT PERENCANAAN KEBUTUHAN ASN</option>
+<option value="PUSAT PENGEMBANGAN KEPEGAWAIAN ASN">PUSAT PENGEMBANGAN KEPEGAWAIAN ASN</option>
+<option value="PUSAT PENGKAJIAN MANAJEMEN ASN">PUSAT PENGKAJIAN MANAJEMEN ASN</option>
+<option value="PUSAT PEMBINAAN JABATAN FUNGSIONAL KEPEGAWAIAN">PUSAT PEMBINAAN JABATAN FUNGSIONAL KEPEGAWAIAN</option>
+<option value="PUSAT PENGEMBANGAN SISTEM SELEKSI ASN">PUSAT PENGEMBANGAN SISTEM SELEKSI ASN</option>
+<option value="PUSAT PENILAIAN KOMPETENSI ASN">PUSAT PENILAIAN KOMPETENSI ASN</option>
+<option value="PUSAT KONSULTASI DAN BANTUAN HUKUM">PUSAT KONSULTASI DAN BANTUAN HUKUM</option>
+<option value="INSPEKTORAT">INSPEKTORAT</option>
+<option value="BADAN PERTIMBANGAN ASN">BADAN PERTIMBANGAN ASN</option>
+<option value="KANTOR REGIONAL I YOGYAKARTA">KANTOR REGIONAL I YOGYAKARTA</option>
+<option value="KANTOR REGIONAL II SURABAYA">KANTOR REGIONAL II SURABAYA</option>
+<option value="KANTOR REGIONAL III BANDUNG">KANTOR REGIONAL III BANDUNG</option>
+<option value="KANTOR REGIONAL IV MAKASSAR">KANTOR REGIONAL IV MAKASSAR</option>
+<option value="KANTOR REGIONAL V JAKARTA">KANTOR REGIONAL V JAKARTA</option>
+<option value="KANTOR REGIONAL VI MEDAN">KANTOR REGIONAL VI MEDAN</option>
+<option value="KANTOR REGIONAL VII PALEMBANG">KANTOR REGIONAL VII PALEMBANG</option>
+<option value="KANTOR REGIONAL VIII BANJARMASIN">KANTOR REGIONAL VIII BANJARMASIN</option>
+<option value="KANTOR REGIONAL IX JAYAPURA">KANTOR REGIONAL IX JAYAPURA</option>
+<option value="KANTOR REGIONAL X DENPASAR">KANTOR REGIONAL X DENPASAR</option>
+<option value="KANTOR REGIONAL XI MANADO">KANTOR REGIONAL XI MANADO</option>
+<option value="KANTOR REGIONAL XII PEKANBARU">KANTOR REGIONAL XII PEKANBARU</option>
+<option value="KANTOR REGIONAL XIII BANDA ACEH">KANTOR REGIONAL XIII BANDA ACEH</option>
+<option value="KANTOR REGIONAL XIV MANOKWARI">KANTOR REGIONAL XIV MANOKWARI</option>
+
     </select>
 </div>
 

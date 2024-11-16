@@ -80,6 +80,7 @@ $result = $conn->query($query);
     <title>Surat Keterangan</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
+        
         body {
             background-color: #f8f9fa;
         }
@@ -111,7 +112,7 @@ $result = $conn->query($query);
             margin-left: 0;
         }
         .navbar-top {
-            background-color: #007bff;
+            background-color: #343a40;
             color: white;
             position: fixed;
             width: 100%;
@@ -132,13 +133,13 @@ $result = $conn->query($query);
             padding: 10px 20px;
             font-size: 18px;
             color: white;
-            background-color: #007bff;
-            border: none;
+            background-color: #343a40;
+            border: none; 
             border-radius: 5px;
             transition: background-color 0.3s;
         }
         .toggle-btn:hover {
-            background-color: #0056b3;
+            background-color: #343a40;
         }
         .sidebar.open {
             left: 0;
